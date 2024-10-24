@@ -1,0 +1,58 @@
+// Demonstrating Assignment Operators
+let a = 10; // Assignment
+let b = 20;
+// Demonstrating Arithmetic and Bitwise Operators
+let sum = a + b; // Arithmetic
+let product = a * b; // Arithmetic
+let bitwiseAnd = a & b; // Bitwise AND
+let bitwiseOr = a | b; // Bitwise OR
+console.log("Sum:", sum);
+console.log("Product:", product);
+console.log("Bitwise AND:", bitwiseAnd);
+console.log("Bitwise OR:", bitwiseOr);
+// Demonstrating String Operators
+let firstName = "John";
+let lastName = "Doe";
+let fullName = firstName + " " + lastName; // String concatenation
+console.log("Full Name:", fullName);
+// Demonstrating Ternary Operator
+let age = 18;
+let canVote = (age >= 18) ? "Yes, can vote." : "No, cannot vote.";
+console.log("Voting Eligibility:", canVote);
+// Demonstrating Unary Operators
+let x = 5;
+let y = ++x; // Pre-increment
+console.log("Value of x after pre-increment:", x);
+console.log("Value of y (incremented value):", y);
+// Demonstrating Comma Operator
+let z = (1, 2, 3); // Only the last value is returned
+console.log("Value of z using comma operator:", z);
+// Control Statements: if-else
+if (a > b) {
+console.log("a is greater than b");
+} else if (a < b) {
+console.log("a is less than b");
+} else {
+console.log("a is equal to b");
+}
+
+// Control Statements: switch-case
+let fruit = "banana";
+switch (fruit) {
+case "apple":
+console.log("You chose an apple.");
+break;
+case "banana":
+console.log("You chose a banana.");
+break;
+case "orange":
+console.log("You chose an orange.");
+break;
+default:
+console.log("Unknown fruit.");
+}
+// Summary of all operations
+console.log("Summary of Operations:");
+console.log(`Assignment: a = ${a}, b = ${b}`);
+console.log(`Bitwise AND: ${bitwiseAnd}, Bitwise OR: ${bitwiseOr}`);
+console.log(`Ternary: ${age} => ${canVote}`);
