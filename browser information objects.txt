@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browser Information</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+background-color: #f4f4f4;
+}
+#info {
+background-color: white;
+padding: 20px;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+h2 {
+color: #333;
+}
+</style>
+</head>
+<body>
+<div id="info">
+<h2>Browser Information</h2>
+<p id="userAgent"></p>
+<p id="browserName"></p>
+<p id="browserVersion"></p>
+<p id="screenWidth"></p>
+<p id="screenHeight"></p>
+<p id="historyLength"></p>
+</div>
+<script>
+// Displaying browser information
+document.getElementById("userAgent").innerText = "User Agent: " +
+navigator.userAgent;
+
+// Extracting browser name and version
+const userAgent = navigator.userAgent;
+let browserName, browserVersion;
+if (userAgent.indexOf("Firefox") > -1) {
+browserName = "Mozilla Firefox";
+browserVersion = userAgent.match(/Firefox\/([0-9]+(\.[0-9]+)?)/)[1];
+} else if (userAgent.indexOf("Chrome") > -1) {
+browserName = "Google Chrome";
+browserVersion = userAgent.match(/Chrome\/([0-9]+(\.[0-9]+)?)/)[1];
+} else if (userAgent.indexOf("Safari") > -1) {
+browserName = "Apple Safari";
+browserVersion = userAgent.match(/Version\/([0-9]+(\.[0-9]+)?)/)[1];
+} else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+browserName = "Microsoft Internet Explorer";
+browserVersion = userAgent.match(/(MSIE|rv:)([0-9]+(\.[0-9]+)?)/)[2];
+} else {
+browserName = "Unknown";
+browserVersion = "N/A";
+}
+document.getElementById("browserName").innerText = "Browser Name: " +
+browserName;
+document.getElementById("browserVersion").innerText = "Browser Version: " +
+browserVersion;
+// Displaying screen dimensions
+document.getElementById("screenWidth").innerText = "Screen Width: " + screen.width
++ "px";
+document.getElementById("screenHeight").innerText = "Screen Height: " +
+screen.height + "px";
+// Displaying history length
+document.getElementById("historyLength").innerText = "History Length: " +
+history.length;
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+JavaScript function that calculates the prime numbers between two given numbers M  and N. The function handles potential errors using try-catch-finally. 
+function findPrimeNumbers(M, N) { 
+ let primes = []; 
+ try { 
+ // Validate inputs 
+ if (typeof M !== 'number' || typeof N !== 'number') { 
+ throw new Error('Both M and N must be numbers.'); 
+ } 
+ if (M < 2 || N < 2 || M > N) { 
+ throw new Error('M must be >= 2, N must be >= M, and both must be positive  integers.'); 
+ } 
+ // Function to check if a number is prime 
+ function isPrime(num) { 
+ for (let i = 2; i <= Math.sqrt(num); i++) { 
+ if (num % i === 0) return false; 
+ } 
+ return true; 
+ } 
+ // Loop through the range and check for primes 
+ for (let i = M; i <= N; i++) { 
+ if (isPrime(i)) { 
+ primes.push(i); 
+ } 
+ } 
+ } catch (error) { 
+ console.error('Error:', error.message); 
+ } finally { 
+ // This block executes regardless of an error occurring 
+ console.log('Completed checking for prime numbers.'); 
+ } 
+ return primes; 
+} 
+// Example usage 
+const M = 10; // Set your value for M 
+const N = 50; // Set your value for N 

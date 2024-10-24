@@ -1,0 +1,49 @@
+PHP script that demonstrates array processing, string manipulation, and input validation  using regular expressions.  
+PHP Script Example 
+<?php 
+// Function to validate email using regular expressions 
+function validateEmail($email) { 
+ $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'; 
+ return preg_match($pattern, $email); 
+} 
+// Function to process an array and return the reversed array 
+function processArray($inputArray) { 
+ return array_reverse($inputArray); 
+} 
+// Function to manipulate a string (capitalize words) 
+function capitalizeWords($string) { 
+ return ucwords(strtolower($string)); 
+} 
+// Check if form is submitted 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+ $name = $_POST['name']; 
+ $email = $_POST['email']; 
+ $items = explode(',', $_POST['items']); // Convert string input to an array  // Validate email 
+ if (!validateEmail($email)) { 
+ echo "Invalid email format.<br>"; 
+ } else { 
+ // Process the array 
+ $reversedItems = processArray($items); 
+ // Capitalize words in the name 
+ $capitalizedName = capitalizeWords($name); 
+ // Display results
+ echo "Name: $capitalizedName<br>"; 
+ echo "Email: $email<br>"; 
+ echo "Reversed Items: " . implode(', ', $reversedItems) . "<br>";  } 
+} 
+?> 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+ <meta charset="UTF-8"> 
+ <title>Array and String Processing</title> 
+</head> 
+<body> 
+<h1>Input Form</h1> 
+<form method="POST"> 
+ <label for="name">Name:</label><br> 
+ <input type="text" id="name" name="name" required><br><br>  <label for="email">Email:</label><br> 
+ <input type="email" id="email" name="email" required><br><br>  <label for="items">Items (comma-separated):</label><br>  <input type="text" id="items" name="items" required><br><br>  <button type="submit">Submit</button> 
+</form> 
+</body> 
+</html>

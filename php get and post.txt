@@ -1,0 +1,81 @@
+PHP script that handles form submission using both `$_POST` and `$_GET`. It includes  validation and sanitization of the form data to ensure that the input is safe and meets the  required criteria. 
+PHP Script for Handling Form Submission 
+<?php 
+// Function to sanitize input data 
+function sanitizeInput($data) { 
+ return htmlspecialchars(trim($data)); // Remove unnecessary spaces and convert  special characters to HTML entities 
+} 
+// Function to validate email 
+function validateEmail($email) { 
+ return filter_var($email, FILTER_VALIDATE_EMAIL) !== false; 
+} 
+// Initialize variables for storing form data and errors 
+$name = ''; 
+$email = ''; 
+$message = ''; 
+$errors = []; 
+// Check if the form is submitted using POST method 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+ // Sanitize and validate the name 
+ if (empty($_POST['name'])) { 
+ $errors['name'] = "Name is required."; 
+ } else { 
+ $name = sanitizeInput($_POST['name']); 
+ }
+ // Sanitize and validate the email 
+ if (empty($_POST['email'])) { 
+ $errors['email'] = "Email is required."; 
+ } else { 
+ $email = sanitizeInput($_POST['email']); 
+ if (!validateEmail($email)) { 
+ $errors['email'] = "Invalid email format."; 
+ } 
+ } 
+ // Sanitize the message 
+ if (!empty($_POST['message'])) { 
+ $message = sanitizeInput($_POST['message']); 
+ } 
+ // If there are no errors, process the data 
+ if (empty($errors)) { 
+ // Process the data (e.g., save to a database or send an email)  echo "Form submitted successfully!<br>"; 
+ echo "Name: $name<br>"; 
+ echo "Email: $email<br>"; 
+ echo "Message: $message<br>"; 
+ } 
+} 
+// Handle GET parameters 
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {  // Example: display GET parameters 
+ foreach ($_GET as $key => $value) { 
+ echo "GET Parameter - $key: " . sanitizeInput($value) . "<br>";  } 
+} 
+?>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+ <meta charset="UTF-8"> 
+ <title>Form Submission Example</title> 
+</head> 
+<body> 
+<h1>Contact Form</h1> 
+<!-- Display errors if any --> 
+<?php if (!empty($errors)): ?> 
+ <div style="color: red;"> 
+ <ul> 
+ <?php foreach ($errors as $error): ?> 
+ <li><?php echo $error; ?></li> 
+ <?php endforeach; ?> 
+ </ul> 
+ </div> 
+<?php endif; ?> 
+<!-- Contact form --> 
+<form method="POST" action=""> 
+ <label for="name">Name:</label><br> 
+ <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name);  ?>" required><br><br> 
+ <label for="email">Email:</label><br> 
+ <input type="email" id="email" name="email" value="<?php echo  htmlspecialchars($email); ?>" required><br><br> 
+ <label for="message">Message:</label><br> 
+ <textarea id="message" name="message"><?php echo htmlspecialchars($message);  ?></textarea><br><br> 
+ <button type="submit">Submit</button> 
+</form> 
+</body> 
+</html>

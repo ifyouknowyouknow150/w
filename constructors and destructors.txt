@@ -1,0 +1,45 @@
+Demonstration of basic object-oriented programming principles in PHP using classes that  illustrate constructors, destructors, inheritance, and polymorphism. 
+Example PHP Code 
+<?php 
+// Base Class 
+class Animal { 
+ protected $name; 
+ // Constructor 
+ public function __construct($name) { 
+ $this->name = $name; 
+ echo "Animal '{$this->name}' created.<br>"; 
+ } 
+ // Destructor 
+ public function __destruct() { 
+ echo "Animal '{$this->name}' destroyed.<br>"; 
+ } 
+ // Method to be overridden 
+ public function makeSound() { 
+ return "Some generic animal sound."; 
+ } 
+} 
+// Derived Class 1 
+class Dog extends Animal { 
+ // Override the makeSound method 
+ public function makeSound() { 
+ return "Woof! Woof!"; 
+ } 
+}
+// Derived Class 2 
+class Cat extends Animal { 
+ // Override the makeSound method 
+ public function makeSound() { 
+ return "Meow!"; 
+ } 
+} 
+// Demonstrating Polymorphism 
+function animalSound(Animal $animal) { 
+ echo $animal->makeSound() . "<br>"; 
+} 
+// Create instances of Dog and Cat 
+$dog = new Dog("Buddy"); 
+$cat = new Cat("Whiskers"); 
+// Call the function to demonstrate polymorphism 
+animalSound($dog); // Outputs: Woof! Woof! animalSound($cat); // Outputs: Meow! 
+// Cleaning up 
+unset($dog); // Explicitly destroying the Dog object unset($cat); // Explicitly destroying the Cat object ?>

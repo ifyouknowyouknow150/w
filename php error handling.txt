@@ -1,0 +1,35 @@
+PHP script that demonstrates error handling using `try-catch` blocks. It logs errors to a  file and handles exceptions properly. 
+PHP Script for Error Handling 
+<?php 
+// Error logging function 
+function logError($errorMessage) { 
+ $logFile = 'error_log.txt'; // Specify the log file 
+ $dateTime = date('Y-m-d H:i:s'); // Get the current date and time 
+ $formattedMessage = "[$dateTime] ERROR: $errorMessage" . PHP_EOL; // Format  the error message 
+ file_put_contents($logFile, $formattedMessage, FILE_APPEND); // Append the  error message to the log file 
+} 
+// Custom Exception class 
+class CustomException extends Exception { 
+ public function errorMessage() { 
+ // Error message for custom exception 
+ return "Custom error on line {$this->getLine()} in {$this->getFile()}: {$this- >getMessage()}"; 
+ } 
+} 
+try { 
+ // Simulating a division by zero error 
+ $numerator = 10; 
+ $denominator = 0; 
+ if ($denominator === 0) { 
+ throw new CustomException("Division by zero is not allowed."); 
+ } 
+ $result = $numerator / $denominator; 
+ echo "Result: $result";
+} catch (CustomException $e) { 
+ // Handle custom exceptions 
+ echo "Caught Custom Exception: " . $e->errorMessage() . "<br>";  logError($e->errorMessage()); // Log error to file } catch (Exception $e) { 
+ // Handle general exceptions 
+ echo "Caught Exception: " . $e->getMessage() . "<br>";  logError($e->getMessage()); // Log error to file 
+} finally { 
+ // This block will always execute 
+ echo "Execution complete."; 
+}

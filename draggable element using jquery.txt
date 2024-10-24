@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+ <meta charset="UTF-8"> 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Draggable Element and Date Picker</title> 
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  <style> 
+ body { 
+ font-family: Arial, sans-serif; 
+ margin: 20px; 
+ background-color: #f4f4f4; 
+ } 
+ #draggable { 
+ width: 150px; 
+ height: 150px; 
+ background-color: #4CAF50; 
+ color: white; 
+ text-align: center; 
+ line-height: 150px; 
+ border-radius: 8px; 
+ cursor: move; 
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+ } 
+ #datepicker { 
+ margin-top: 20px; 
+ padding: 10px; 
+ border: 1px solid #ccc; 
+ border-radius: 5px; 
+ width: 200px; 
+ } 
+ #message { 
+ margin-top: 20px; 
+ font-weight: bold; 
+ } 
+ </style> 
+</head> 
+<body> 
+ <div id="draggable">Drag me!</div> 
+ <input type="text" id="datepicker" placeholder="Select a date"> 
+ <div id="message"></div> 
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>  <script> 
+ $(function() { 
+ // Make the element draggable 
+ $("#draggable").draggable(); 
+ // Initialize the date picker 
+ $("#datepicker").datepicker({ 
+ onSelect: function(dateText) { 
+ $("#message").text("You selected: " + dateText); 
+ } 
+ }); 
+ }); 
+ </script> 
+</body> 
+</html> 

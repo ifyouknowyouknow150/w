@@ -1,0 +1,54 @@
+Webpage to demonstrate the uses jQuery UI to create draggable and droppable elements  including effects like hide/show and fade in/out. 
+Step 1: Include jQuery and jQuery UI 
+Include jQuery and jQuery UI in your HTML by using a CDN: 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+ <meta charset="UTF-8"> 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Draggable and Droppable Example</title> 
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  <style> 
+ body { 
+ font-family: Arial, sans-serif; 
+ margin: 20px; 
+ } 
+ #draggable { 
+ width: 100px; 
+ height: 100px; 
+ background-color: lightblue; 
+ border: 1px solid #007BFF; 
+ cursor: move; 
+ } 
+ #droppable { 
+ width: 200px; 
+ height: 200px; 
+ background-color: lightcoral; 
+ border: 2px dashed #FF5733; 
+ margin-top: 20px; 
+ } 
+ #status { 
+ margin-top: 20px; 
+ } 
+ </style> 
+</head> 
+<body> 
+ <div id="draggable" class="ui-widget-content">Drag me</div> 
+ <div id="droppable" class="ui-widget-header">Drop here</div> 
+ <div id="status"></div> 
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>  <script> 
+ $(function() { 
+ $("#draggable").draggable();
+ $("#droppable").droppable({ 
+ drop: function(event, ui) { 
+ // Show a message when the item is dropped 
+ $("#status").text("Item dropped!"); 
+ $("#status").fadeIn().delay(1000).fadeOut(); 
+  
+ // Optionally hide the draggable element after dropping 
+ $("#draggable").hide("explode", { pieces: 16 }, 1000); 
+ } 
+ }); 
+ }); 
+ </script> 
+</body> 
+</html> 
